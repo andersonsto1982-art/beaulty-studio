@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estúdio de Beleza | Realçando sua Beleza Natural</title>
+    <!-- Link para o CSS externo -->
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+
+    <!-- 1. CABEÇALHO & NAVEGAÇÃO -->
+    <header id="header">
+        <div class="container">
+            <div class="logo">
+                <h1>Beaulty Studio</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#galeria">Antes & Depois</a></li>
+                    <li><a href="#sobre">O Estúdio</a></li>
+                    <li><a href="#agendamento" class="btn-menu">Agendar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 2. HERO SECTION (INTRODUÇÃO IMPACTANTE) -->
+        <section id="inicio" class="hero">
+            <div class="container hero-content">
+                <h2>Realce a sua beleza natural e recupere sua autoestima</h2>
+                <p>Tratamentos especializados e um atendimento exclusivo para cuidar de você como você merece.</p>
+                <a href="#agendamento" class="btn-principal">Conhecer Serviços</a>
+            </div>
+        </section>
+
+        <!-- 3. SEÇÃO DE SERVIÇOS -->
+        <section id="servicos" class="servicos-section">
+            <div class="container">
+                <div class="secao-titulo">
+                    <span>O que fazemos</span>
+                    <h3>Nossos Serviços Especializados</h3>
+                </div>
+
+                <div class="servicos-grid">
+                    <!-- Card Servicio 1 -->
+                    <div class="card-servico">
+                        <div class="card-img">
+                            <img src="https://via.placeholder.com/400x300" alt="Design de Sobrancelhas">
+                        </div>
+                        <div class="card-info">
+                            <h4>Design de Sobrancelhas</h4>
+                            <p>Harmonização facial completa para valorizar o seu olhar de forma natural.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card Servicio 2 -->
+                    <div class="card-servico">
+                        <div class="card-img">
+                            <img src="https://via.placeholder.com/400x300" alt="Extensão de Cílios">
+                        </div>
+                        <div class="card-info">
+                            <h4>Extensão de Cílios</h4>
+                            <p>Fios leves e curvatura perfeita para um olhar marcante todos os dias.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card Servicio 3 -->
+                    <div class="card-servico">
+                        <div class="card-img">
+                            <img src="imgs/dzunhas03.jpeg" alt="Outros Serviços">
+                        </div>
+                        <div class="card-info">
+                            <h4>Estética Facial</h4>
+                            <p>Cuidados profundos para manter sua pele radiante, hidratada e saudável.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. GALERIA / ANTES E DEPOIS -->
+        <section id="galeria" class="galeria-section">
+            <div class="container">
+                <div class="secao-titulo">
+                    <span>Resultados Reais</span>
+                    <h3>Transformações no Estúdio</h3>
+                </div>
+
+                <div class="galeria-slider">
+                    <div class="slider-item">
+                        <!-- Foto 1 local -->
+                        <img src="imgs/dzunhas01.jpeg" alt="Resultado de Design de Sobrancelhas">
+                    </div>
+                    <div class="slider-item">
+                        <!-- Foto 2 local -->
+                        <img src="imgs/antes-depois-2.jpg" alt="Resultado de Extensão de Cílios">
+                    </div>
+                    <div class="slider-item">
+                        <!-- Foto 3 local -->
+                        <img src="imgs/antes-depois-3.jpg" alt="Resultado de Estética Facial">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. SOBRE A PROFISSIONAL / O ESTÚDIO -->
+        <section id="sobre" class="sobre-section">
+            <div class="container sobre-grid">
+                <div class="sobre-img">
+                    <img src="imgs/julia01.jpeg" alt="Foto da sua filha no estúdio">
+                </div>
+                <div class="sobre-texto">
+                    <span>Quem cuida de você</span>
+                    <h3>Dedicada a transformar olhares e elevar a sua autoconfiança</h3>
+                    <p>Aqui colocaremos um texto contando um pouco da trajetória dela, a paixão pela estética e o
+                        compromisso em entregar um atendimento seguro, higiênico e totalmente personalizado para cada
+                        cliente.</p>
+                    <p>Venha vivenciar uma experiência de relaxamento e cuidado em um ambiente preparado especialmente
+                        para você.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. AGENDAMENTO / FORMULÁRIO DE RESERVA -->
+        <section id="agendamento" class="cta-section">
+            <div class="container cta-content">
+                <h3>Reserve o seu Horário</h3>
+                <p>Preencha os campos abaixo para solicitar o seu agendamento. Entraremos em contato para confirmar!</p>
+
+                <!-- Formulário de Reserva -->
+                <form id="form-reserva" class="form-reserva">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo:</label>
+                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                    </div>
+
+                    <!-- NOVO CAMPO: Escolha do Serviço -->
+                    <div class="form-group">
+                        <label for="servico">Serviço Desejado:</label>
+                        <select id="servico" name="servico" required>
+                            <option value="" disabled selected>Selecione o procedimento</option>
+                            <option value="Design de Sobrancelhas">Design de Sobrancelhas</option>
+                            <option value="Extensão de Cílios">Extensão de Cílios</option>
+                            <option value="Estética Facial">Estética Facial</option>
+                            <option value="Outro Procedimento">Outro / Consultar Disponibilidade</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="data">Data do Agendamento:</label>
+                            <input type="date" id="data" name="data" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="horario">Horário Disponível:</label>
+                            <select id="horario" name="horario" required>
+                                <option value="" disabled selected>Selecione um horário</option>
+                                <option value="08:00">08:00</option>
+                                <option value="09:30">09:30</option>
+                                <option value="11:00">11:00</option>
+                                <option value="13:30">13:30</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:30">16:30</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-enviar-reserva">
+                        Solicitar Reserva via WhatsApp
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 7. RODAPÉ -->
+        <footer>
+            <div class="container rodape-conteudo">
+                <p>&copy; 2026 Beaulty Studio. Todos os direitos reservados.</p>
+                <p>Desenvolvido por Anderson Santos</p>
+            </div>
+        </footer>
+
+        <script src="JS/script.js"></script>
+
+</body>
+
+</html>
