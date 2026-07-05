@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         dataFormatada = dataInput.split('-').reverse().join('/');
                     }
 
-                    const numeroWhatsapp = "5581997087849";
+                    const numeroWhatsapp = "5500000000000";
 
                     // ==========================================================
                     // FORMATAÇÃO ESTILIZADA DA MENSAGEM DO WHATSAPP
