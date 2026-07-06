@@ -6,7 +6,7 @@
 :root {
     /* Paleta de Cores */
     --cor-fundo: #FAFAFA;
-    --cor-fundo-alt: #F3ECE6; /* Nude bem suave para alternar seções */
+    --cor-fundo-alt: #fdd4f9; /* Nude bem suave para alternar seções */
     --cor-primaria: #8C7867;  /* Marrom/Dourado queimado elegante */
     --cor-secundaria: #D4B2A7; /* Rosa-chá sutil */
     --cor-texto: #333333;
@@ -457,7 +457,7 @@ footer {
     font-family: var(--fonte-corpo);
     font-size: 0.95rem;
     color: var(--cor-texto);
-    background-color: #FCFAFA;
+    background-color: #fceaf5;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
