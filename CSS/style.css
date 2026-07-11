@@ -145,7 +145,7 @@ nav ul li a:hover {
 }
 
 .btn-menu:hover {
-    background-color: #c7a195;
+    background-color: #c795c0;
 }
 
 /* Compensa o Header Fixo para o conteúdo não sumir atrás dele */
@@ -360,7 +360,7 @@ main {
 }
 
 .btn-whatsapp:hover {
-    background-color: #20ba59;
+    background-color: #3ad64f;
     transform: scale(1.03);
 }
 
@@ -470,7 +470,7 @@ footer {
 
 .btn-enviar-reserva {
     width: 100%;
-    background-color: #25D366; /* Cor do WhatsApp para indicar a ação */
+    background-color: #fa34bf; /* Cor do WhatsApp para indicar a ação */
     color: var(--cor-branca);
     border: none;
     padding: 15px;
@@ -485,7 +485,7 @@ footer {
 }
 
 .btn-enviar-reserva:hover {
-    background-color: #20ba59;
+    background-color: #fc80f1;
     transform: translateY(-1px);
 }
 

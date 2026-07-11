@@ -19,7 +19,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Formatação da data de AAAA-MM-DD para DD/MM/AAAA
             let dataFormatada = dataInput;
+
             if (dataInput && dataInput.includes('-')) {
+                // 1. Criar objetos de data para comparação (zerando as horas)
+                const hoje = new Date();
+                hoje.setHours(0, 0, 0, 0);
+
+                // O formato 'AAAA-MM-DD' é ideal para o construtor do Date
+                const dataAgendamento = new Date(dataInput + 'T00:00:00');
+
+                // 2. Verificar se a data escolhida é menor que a data de hoje
+                if (dataAgendamento < hoje) {
+                    // Aqui você trata o erro (ex: exibe um alerta, limpa o campo, etc.)
+                    alert("A data do agendamento não pode ser anterior ao dia de hoje!");
+                    // Opcional: interromper a execução do código aqui se necessário
+                    return;
+                }
+
+                // 3. Se a data for válida, formata para o padrão DD/MM/AAAA
                 dataFormatada = dataInput.split('-').reverse().join('/');
             }
 
