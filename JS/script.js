@@ -68,3 +68,29 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("Formulário não encontrado no DOM!");
     }
 });
+
+// script.js (Front-end)
+
+async function enviarAgendamento() {
+    const dados = {
+        cliente_name: document.getElementById('nome').value,
+        dataInput: document.getElementById('data').value, // Formato AAAA-MM-DD
+        horario_agendamento: document.getElementById('horario').value
+    };
+
+    // Faz a chamada segura para a rota da Vercel
+    const resposta = await fetch('/api/agendar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados)
+    });
+
+    const resultado = await resposta.json();
+
+    if (resposta.ok) {
+        alert("Sucesso: " + resultado.message);
+    } else {
+        // Aqui exibe o erro se for data passada ou horário duplicado
+        alert("Erro: " + resultado.error);
+    }
+}
