@@ -1,6 +1,6 @@
 // api/agendar.js
 import 'dotenv/config';
-import mysql from 'mysql2/promise'; // Importado apenas UMA vez para evitar o erro de declaração!
+import mysql from 'mysql2/promise';
 
 export default async function handler(req, res) {
     // Permitir apenas requisições do tipo POST
@@ -19,21 +19,20 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'A data não pode ser anterior a hoje.' });
     }
 
+    let connection; // Declarada aqui fora para podermos fechar no 'finally'
+
     try {
         // 2. Conexão inteligente (Vercel vs Local)
-        let connection;
-        
-        // Se houver a variável MYSQL_URL no ambiente (como na Vercel ou no .env local)
         if (process.env.MYSQL_URL) {
             connection = await mysql.createConnection(process.env.MYSQL_URL);
         } else {
-            // Se NÃO houver (ambiente de desenvolvimento local padrão)
+            // Configurações do seu banco local
             connection = await mysql.createConnection({
                 host: '127.0.0.1',
                 user: 'beaulty_user',
-                password: '@Nderson14121982', // Sua senha do banco local
+                password: '@Nderson14121982', 
                 database: 'defaultdb',
-                port: 17130
+                port: 3306 // Corrigido para a porta padrão do seu MySQL local!
             });
         }
 
@@ -44,7 +43,6 @@ export default async function handler(req, res) {
         `;
         
         await connection.execute(query, [cliente_name, dataInput, horario_agendamento]);
-        await connection.end();
 
         return res.status(200).json({ success: true, message: 'Agendamento realizado com sucesso!' });
 
@@ -53,5 +51,10 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'Este horário já foi preenchido. Escolha outro!' });
         }
         return res.status(500).json({ error: 'Erro interno no servidor: ' + error.message });
+    } finally {
+        // Garante que a conexão com o banco sempre será fechada, evitando travar o banco por excesso de conexões abertas
+        if (connection) {
+            await connection.end();
+        }
     }
 }
