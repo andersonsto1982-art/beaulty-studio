@@ -7,8 +7,8 @@
     /* Paleta de Cores */
     --cor-fundo: #FAFAFA;
     --cor-fundo-alt: #fdd4f9; /* Nude bem suave para alternar seções */
-    --cor-primaria: #8C7867;  /* Marrom/Dourado queimado elegante */
-    --cor-secundaria: #D4B2A7; /* Rosa-chá sutil */
+    --cor-primaria: #e63eae;  /* Marrom/Dourado queimado elegante */
+    --cor-secundaria: #f16ac9; /* Rosa-chá sutil */
     --cor-texto: #333333;
     --cor-texto-mutado: #666666;
     --cor-branca: #FFFFFF;
@@ -89,7 +89,7 @@ a {
 }
 
 .btn-principal:hover {
-    background-color: #766354;
+    background-color: #f787c8;
     transform: translateY(-2px);
 }
 
@@ -145,7 +145,7 @@ nav ul li a:hover {
 }
 
 .btn-menu:hover {
-    background-color: #c795c0;
+    background-color: #f593c9;
 }
 
 /* Compensa o Header Fixo para o conteúdo não sumir atrás dele */
