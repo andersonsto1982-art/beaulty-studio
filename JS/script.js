@@ -1,8 +1,36 @@
+// script.js (Front-end)
+
+// Função que faz a ponte segura com o banco de dados na Vercel
+async function salvarNoBanco(nome, servico, dataInput, horario) {
+    const dados = {
+        cliente_name: nome,
+        servico: servico, // Adicionado caso queira salvar o serviço no banco também
+        dataInput: dataInput, // Formato AAAA-MM-DD (ideal para o MySQL)
+        horario_agendamento: horario
+    };
+
+    // Faz a chamada segura para a rota da Vercel
+    const resposta = await fetch('/api/agendar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados)
+    });
+
+    const resultado = await resposta.json();
+
+    if (resposta.ok) {
+        return { sucesso: true, message: resultado.message };
+    } else {
+        return { sucesso: false, erro: resultado.error };
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const formReserva = document.getElementById('form-reserva');
 
     if (formReserva) {
-        formReserva.addEventListener('submit', function (evento) {
+        // Transformamos a função em "async" para poder esperar a resposta do banco de dados
+        formReserva.addEventListener('submit', async function (evento) {
             evento.preventDefault();
 
             // Coleta de todos os campos preenchidos
@@ -28,11 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // O formato 'AAAA-MM-DD' é ideal para o construtor do Date
                 const dataAgendamento = new Date(dataInput + 'T00:00:00');
 
-                // 2. Verificar se a data escolhida é menor que a data de hoje
+                // 2. Verificar se a data escolhida é menor que a data de hoje (Validação Visual rápida)
                 if (dataAgendamento < hoje) {
-                    // Aqui você trata o erro (ex: exibe um alerta, limpa o campo, etc.)
                     alert("A data do agendamento não pode ser anterior ao dia de hoje!");
-                    // Opcional: interromper a execução do código aqui se necessário
                     return;
                 }
 
@@ -40,12 +66,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 dataFormatada = dataInput.split('-').reverse().join('/');
             }
 
-            const numeroWhatsapp = nZap; // Número de telefone do WhatsApp (com código do país e DDD)
+            // ==========================================================
+            // PASSO NOVO: CONEXÃO COM O BANCO ANTES DO WHATSAPP
+            // ==========================================================
+            // Mostra um aviso visual rápido ou muda o texto do botão para "Agendando..." se desejar
+            
+            const resultadoBanco = await salvarNoBanco(nome, servico, dataInput, horario);
+
+            if (!resultadoBanco.sucesso) {
+                // Se o banco rejeitar (ex: horário duplicado), o fluxo para aqui e avisa o cliente
+                alert("Não foi possível agendar: " + resultadoBanco.erro);
+                return; 
+            }
+
+            // Se o código chegou até aqui, significa que salvou no MySQL com sucesso!
+            // Agora geramos a mensagem para enviar no WhatsApp da dona do Studio.
+
+            const numeroWhatsapp = nZap; 
 
             // ==========================================================
             // FORMATAÇÃO ESTILIZADA DA MENSAGEM DO WHATSAPP
             // ==========================================================
-            // Usamos asteriscos (*) para aplicar negrito nativo no Whats
             let mensagem = "✨ NOVA SOLICITAÇÃO DE AGENDAMENTO ✨\n";
             mensagem += "--------------------------------------\n\n";
             mensagem += "👤 Cliente: " + nome + "\n";
@@ -53,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mensagem += "📅 Data: " + dataFormatada + "\n";
             mensagem += "⏰ Horário: " + horario + "\n\n";
             mensagem += "--------------------------------------\n";
-            mensagem += "Enviado automaticamente pelo site Beaulty Studio.";
+            mensagem += "Confirmado e registrado no Beaulty Studio.";
 
             // Converte os caracteres especiais e quebras de linha para formato de URL
             const mensagemCodificada = encodeURIComponent(mensagem);
@@ -61,36 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Monta o link final usando a API oficial estável
             const linkFinal = "https://api.whatsapp.com/send?phone=" + numeroWhatsapp + "&text=" + mensagemCodificada;
 
-            // Redireciona o usuário na mesma janela (evita bloqueio de pop-up)
+            // Redireciona o usuário para o WhatsApp
             window.location.href = linkFinal;
         });
     } else {
         console.error("Formulário não encontrado no DOM!");
     }
 });
-
-// script.js (Front-end)
-
-async function enviarAgendamento() {
-    const dados = {
-        cliente_name: document.getElementById('nome').value,
-        dataInput: document.getElementById('data').value, // Formato AAAA-MM-DD
-        horario_agendamento: document.getElementById('horario').value
-    };
-
-    // Faz a chamada segura para a rota da Vercel
-    const resposta = await fetch('/api/agendar', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(dados)
-    });
-
-    const resultado = await resposta.json();
-
-    if (resposta.ok) {
-        alert("Sucesso: " + resultado.message);
-    } else {
-        // Aqui exibe o erro se for data passada ou horário duplicado
-        alert("Erro: " + resultado.error);
-    }
-}
