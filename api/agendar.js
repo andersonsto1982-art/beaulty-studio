@@ -20,19 +20,20 @@ export default async function handler(req, res) {
     }
 
     try {
+        // 2. Conexão inteligente (Vercel vs Local)
         let connection;
         
+        // Se houver a variável MYSQL_URL no ambiente (como na Vercel ou no .env local)
         if (process.env.MYSQL_URL) {
-            // Na Vercel, ele usa a URL única que vamos cadastrar
             connection = await mysql.createConnection(process.env.MYSQL_URL);
         } else {
-            // No seu computador, ele continua usando as credenciais locais
+            // Se NÃO houver (ambiente de desenvolvimento local padrão)
             connection = await mysql.createConnection({
                 host: '127.0.0.1',
                 user: 'beaulty_user',
-                password: 'SUA_SENHA_LOCAL_AQUI',
-                database: 'beaulty_studio',
-                port: 3306
+                password: '@Nderson14121982', // Sua senha do banco local
+                database: 'defaultdb',
+                port: 17130
             });
         }
 
