@@ -24,7 +24,19 @@ export default async function handler(req, res) {
     try {
         // 2. Conexão inteligente (Vercel vs Local)
         if (process.env.MYSQL_URL) {
-            connection = await mysql.createConnection(process.env.MYSQL_URL);
+            // Usamos o método nativo para decodificar e limpar qualquer caractere estranho da URL
+            const dbUrl = new URL(process.env.MYSQL_URL);
+            
+            connection = await mysql.createConnection({
+                host: dbUrl.hostname,
+                port: dbUrl.port || 3306,
+                user: dbUrl.username,
+                password: decodeURIComponent(dbUrl.password),
+                database: dbUrl.pathname.replace('/', ''),
+                ssl: {
+                    rejectUnauthorized: false // Garante compatibilidade SSL com a Aiven
+                }
+            });
         } else {
             // Configurações do seu banco local
             connection = await mysql.createConnection({
@@ -32,7 +44,7 @@ export default async function handler(req, res) {
                 user: 'beaulty_user',
                 password: '@Nderson14121982', 
                 database: 'defaultdb',
-                port: 3306 // Corrigido para a porta padrão do seu MySQL local!
+                port: 3306
             });
         }
 
