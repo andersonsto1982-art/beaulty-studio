@@ -57,6 +57,7 @@
                             <h4>Design de Sobrancelhas</h4>
                             <p>Harmonização facial completa para valorizar o seu olhar de forma natural.</p>
                         </div>
+                        <button class="btn-ver-mais" onclick="abrirGaleria('galeria-sobrancelhas')">Espiar</button>
                     </div>
 
                     <!-- Card Servicio 2 -->
@@ -68,6 +69,7 @@
                             <h4>Design de Unhas</h4>
                             <p>Transforme suas unhas com nossos serviços de manicure e pedicure premium.</p>
                         </div>
+                        <button class="btn-ver-mais" onclick="abrirGaleria('galeria-unhas')">Espiar</button>
                     </div>
 
                     <!-- Card Servicio 3 -->
@@ -79,10 +81,57 @@
                             <h4>Tranças</h4>
                             <p>Estilo e elegância com tranças que combinam com seu estilo pessoal.</p>
                         </div>
+                        <button class="btn-ver-mais" onclick="abrirGaleria('galeria-trancas')">Espiar</button>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- ================= ESTRUTURA DOS MODAIS (GALERIAS) ================= -->
+
+        <!-- Modal Sobrancelhas -->
+        <div id="galeria-sobrancelhas" class="modal-galeria">
+            <div class="modal-conteudo">
+                <span class="btn-fechar" onclick="fecharGaleria('galeria-sobrancelhas')">&times;</span>
+                <h3>Galeria - Design de Sobrancelhas</h3>
+                <div class="fotos-grid">
+                    <img src="imgs/dzsobrancelhas001.png" alt="Sobrancelha 1">
+                    <img src="imgs/dzsobrancelhas002.png" alt="Sobrancelha 2"> <!-- Adicione suas fotos aqui -->
+                    <img src="imgs/dzsobrancelhas003.png" alt="Sobrancelha 3">
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Unhas -->
+        <div id="galeria-unhas" class="modal-galeria">
+            <div class="modal-conteudo">
+                <span class="btn-fechar" onclick="fecharGaleria('galeria-unhas')">&times;</span>
+                <h3>Galeria - Design de Unhas</h3>
+                <div class="fotos-grid">
+                    <img src="imgs/dzunhas014.jpeg" alt="Unhas 1">
+                    <img src="imgs/dzunhas002.jpeg" alt="Unhas 2"> <!-- Adicione suas fotos aqui -->
+                    <img src="imgs/dzunhas004.jpeg" alt="Unhas 3">
+                    <img src="imgs/dzunhas006.jpeg" alt="Unhas 4">
+                    <img src="imgs/dzunhas008.jpeg" alt="Unhas 5">
+                    <img src="imgs/dzunhas014.jpeg" alt="Unhas 6">
+                    <img src="imgs/dzunhas016.png" alt="Unhas 7">
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Tranças -->
+        <div id="galeria-trancas" class="modal-galeria">
+            <div class="modal-conteudo">
+                <span class="btn-fechar" onclick="fecharGaleria('galeria-trancas')">&times;</span>
+                <h3>Galeria - Tranças</h3>
+                <div class="fotos-grid">
+                    <img src="imgs/trac001.jpeg" alt="Tranças 1">
+                    <img src="imgs/tranc002.jpeg" alt="Tranças 2"> <!-- Adicione suas fotos aqui -->
+                    <img src="imgs/tranc003.jpeg" alt="Tranças 3">
+                    <img src="imgs/tranc006.jpeg" alt="Tranças 4">
+                </div>
+            </div>
+        </div>
 
         <!-- 4. GALERIA / ANTES E DEPOIS -->
         <section id="galeria" class="galeria-section">
@@ -119,9 +168,10 @@
                     <span>Quem cuida de você</span>
                     <h3>Dedicada a transformar olhares e elevar a sua autoconfiança</h3>
                     <p>Olá, me Chamo Ana Júlia, atuo na área de estética a um pouco mais de dois anos
-                        e tenho o compromisso de entregar um atendimento seguro, 
+                        e tenho o compromisso de entregar um atendimento seguro,
                         higiênico e totalmente personalizado para cada cliente.</p>
-                    <p>Venha vivenciar uma experiência de relaxamento e cuidado em um ambiente preparado especialmente para você.</p>
+                    <p>Venha vivenciar uma experiência de relaxamento e cuidado em um ambiente preparado especialmente
+                        para você.</p>
                 </div>
             </div>
         </section>

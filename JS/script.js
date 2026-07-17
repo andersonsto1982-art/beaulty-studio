@@ -1,5 +1,33 @@
 // script.js (Front-end)
 
+// Função para abrir o modal correto
+function abrirGaleria(idModal) {
+    const modal = document.getElementById(idModal);
+    if (modal) {
+        modal.style.display = "block";
+        // Bloqueia a rolagem da página de fundo enquanto o modal estiver aberto
+        document.body.style.overflow = "hidden";
+    }
+}
+
+// Função para fechar o modal
+function fecharGaleria(idModal) {
+    const modal = document.getElementById(idModal);
+    if (modal) {
+        modal.style.display = "none";
+        // Devolve a rolagem normal para a página de fundo
+        document.body.style.overflow = "auto";
+    }
+}
+
+// Opcional: Fecha o modal se o usuário clicar no fundo escuro fora da caixinha
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal-galeria')) {
+        event.target.style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+}
+
 // Função que faz a ponte segura com o banco de dados na Vercel
 async function salvarNoBanco(nome, servico, dataInput, horario) {
     const dados = {
